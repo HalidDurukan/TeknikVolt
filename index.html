@@ -1,0 +1,2497 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TeknikVolt</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- =====================================================
+         SOL MENÜ
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <h2>⚡ TeknikVolt</h2>
+
+
+        <button class="menu active"
+                onclick="sayfaAc('anasayfa')">
+            🏠 Ana Sayfa
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('elektrik')">
+            ⚡ Elektrik
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('motor')">
+            ⚙️ Motor
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('koruma')">
+            🛡️ Koruma
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('elektrik')">
+            📐 Hesaplar
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('bilgi')">
+            📚 Bilgi Bankası
+        </button>
+
+
+        <button class="menu"
+                onclick="sayfaAc('ayarlar')">
+            ⚙️ Ayarlar
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         ANA İÇERİK
+         ===================================================== -->
+
+    <main class="content">
+
+
+        <!-- ÜST ARAMA -->
+
+        <div class="topbar">
+
+            <input
+                type="text"
+                id="genelArama"
+                placeholder="🔍 Hesap Ara..."
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             ANA SAYFA
+             ================================================= -->
+
+        <div id="anasayfa"
+             class="page">
+
+
+            <h1>⚡ TeknikVolt</h1>
+
+
+            <p>
+                Elektrik Mühendisliği Hesaplama ve Seçim Programı
+            </p>
+
+
+            <hr>
+
+
+            <div class="card">
+
+                <h2>⚡ TeknikVolt'a Hoş Geldiniz</h2>
+
+                <p>
+                    Elektrik, motor, koruma ve teknik hesaplamalar
+                    için hızlı hesaplama ve bilgi merkezi.
+                </p>
+
+                <p>
+                    Sol menüden kullanmak istediğiniz bölümü seçebilirsiniz.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ELEKTRİK
+             ================================================= -->
+
+        <div id="elektrik"
+             class="page"
+             style="display:none;">
+
+
+            <div class="card elektrikBaslik">
+
+                <h2>⚡ Elektrik Hesap Merkezi</h2>
+
+                <p>
+                    Elektriksel güç, akım, gerilim düşümü,
+                    kablo ve kompanzasyon hesaplamaları
+                </p>
+
+            </div>
+
+
+
+            <div class="cards">
+
+
+                <!-- =========================================
+                     kW → AMPER
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>⚡ kW → Amper</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Güç (kW)</label>
+
+                        <input
+                            type="number"
+                            id="kw"
+                            placeholder="Örn: 10"
+                            step="0.01"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="faz">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="cosfi"
+                            value="0.80"
+                            step="0.01"
+                            min="0.01"
+                            max="1"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKwAmper()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kwSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     AMPER → kW
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>🔄 Amper → kW</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Akım (A)</label>
+
+                        <input
+                            type="number"
+                            id="amper"
+                            placeholder="Örn: 25"
+                            step="0.01"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="faz2">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="cosfi2"
+                            value="0.80"
+                            step="0.01"
+                            min="0.01"
+                            max="1"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKW()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kwSonuc2"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     kVA → AMPER
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>⚡ kVA → Amper</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Güç (kVA)</label>
+
+                        <input
+                            type="number"
+                            id="kva"
+                            placeholder="Örn: 100"
+                            step="0.01"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="fazKva">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKvaAmper()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kvaSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     AMPER → kVA
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>🔄 Amper → kVA</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Akım (A)</label>
+
+                        <input
+                            type="number"
+                            id="amperKva"
+                            placeholder="Örn: 150"
+                            step="0.01"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="fazAmperKva">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaAmperKva()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="amperKvaSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     kW → kVA
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>⚡ kW → kVA</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Güç (kW)</label>
+
+                        <input
+                            type="number"
+                            id="kwKva"
+                            placeholder="Örn: 50"
+                            step="0.01"
+                        >
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="cosfiKva"
+                            value="0.80"
+                            step="0.01"
+                            min="0.01"
+                            max="1"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKwKva()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kwKvaSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     VOLTAJ DÜŞÜMÜ
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>📉 Gerilim / Voltaj Düşümü</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Akım (A)</label>
+
+                        <input
+                            type="number"
+                            id="vdAkım"
+                            placeholder="Örn: 32"
+                            step="0.01"
+                        >
+
+
+                        <label>Kablo Uzunluğu (m)</label>
+
+                        <input
+                            type="number"
+                            id="vdUzunluk"
+                            placeholder="Tek yön"
+                            step="0.1"
+                        >
+
+
+                        <label>Kablo Kesiti (mm²)</label>
+
+                        <input
+                            type="number"
+                            id="vdKesit"
+                            placeholder="Örn: 6"
+                            step="0.5"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="vdFaz">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <label>İletken</label>
+
+                        <select id="vdMalzeme">
+
+                            <option value="0.0175">
+                                Bakır
+                            </option>
+
+                            <option value="0.0285">
+                                Alüminyum
+                            </option>
+
+                        </select>
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="vdCosfi"
+                            value="0.80"
+                            step="0.01"
+                        >
+
+
+                        <label>İzin Verilen Düşüm (%)</label>
+
+                        <input
+                            type="number"
+                            id="vdIzin"
+                            value="3"
+                            step="0.1"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaVoltajDusumu()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="vdSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     KABLO KESİTİ
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>🔌 Kablo Kesiti Seçimi</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Akım (A)</label>
+
+                        <input
+                            type="number"
+                            id="kabloAkım"
+                            placeholder="Örn: 32"
+                        >
+
+
+                        <label>Mesafe (m)</label>
+
+                        <input
+                            type="number"
+                            id="kabloMesafe"
+                            placeholder="Örn: 50"
+                        >
+
+
+                        <label>Faz</label>
+
+                        <select id="kabloFaz">
+
+                            <option value="1">
+                                Monofaze 230 V
+                            </option>
+
+                            <option value="3">
+                                Trifaze 400 V
+                            </option>
+
+                        </select>
+
+
+                        <label>İletken</label>
+
+                        <select id="kabloIletken">
+
+                            <option value="bakir">
+                                Bakır
+                            </option>
+
+                            <option value="aluminyum">
+                                Alüminyum
+                            </option>
+
+                        </select>
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="kabloCosfi"
+                            value="0.80"
+                            step="0.01"
+                        >
+
+
+                        <label>Maksimum Gerilim Düşümü (%)</label>
+
+                        <input
+                            type="number"
+                            id="kabloDusum"
+                            value="3"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKabloKesiti()">
+
+                            Kesit Seç
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kabloSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     KOMPANZASYON
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>🔋 Kompanzasyon / Kondansatör</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Aktif Güç (kW)</label>
+
+                        <input
+                            type="number"
+                            id="kompKw"
+                            placeholder="Örn: 100"
+                        >
+
+
+                        <label>Mevcut Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="kompMevcut"
+                            value="0.80"
+                            step="0.01"
+                        >
+
+
+                        <label>Hedef Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="kompHedef"
+                            value="0.98"
+                            step="0.01"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKompanzasyon()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kompSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ENERJİ TÜKETİMİ
+                     ========================================= -->
+
+                <div class="card">
+
+                    <h3>💡 Enerji Tüketimi / Maliyet</h3>
+
+
+                    <div class="input-group">
+
+                        <label>Güç (kW)</label>
+
+                        <input
+                            type="number"
+                            id="enerjiKw"
+                            placeholder="Örn: 10"
+                        >
+
+
+                        <label>Günlük Çalışma (saat)</label>
+
+                        <input
+                            type="number"
+                            id="enerjiSaat"
+                            placeholder="Örn: 8"
+                        >
+
+
+                        <label>Çalışma Günü</label>
+
+                        <input
+                            type="number"
+                            id="enerjiGun"
+                            value="30"
+                        >
+
+
+                        <label>Birim Fiyat (TL/kWh)</label>
+
+                        <input
+                            type="number"
+                            id="enerjiFiyat"
+                            placeholder="Örn: 5"
+                            step="0.01"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaEnerji()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="enerjiSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             MOTOR
+             ================================================= -->
+
+        <div id="motor"
+             class="page"
+             style="display:none;">
+
+
+            <div class="card">
+
+                <h1>⚙️ Motor Hesap Merkezi</h1>
+
+                <p>
+                    Motor akımı, kalkış akımı, motor koruması,
+                    kontaktör, kablo ve yol verme hesapları.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>⚙️ Motor Nominal Akımı</h3>
+
+                    <div class="input-group">
+
+                        <label>Motor Gücü (kW)</label>
+
+                        <input
+                            type="number"
+                            id="motorKw"
+                            placeholder="Örn: 15"
+                        >
+
+
+                        <label>Gerilim (V)</label>
+
+                        <input
+                            type="number"
+                            id="motorVolt"
+                            value="400"
+                        >
+
+
+                        <label>Cosφ</label>
+
+                        <input
+                            type="number"
+                            id="motorCos"
+                            value="0.85"
+                            step="0.01"
+                        >
+
+
+                        <label>Motor Verimi (%)</label>
+
+                        <input
+                            type="number"
+                            id="motorVerim"
+                            value="90"
+                        >
+
+
+                        <label>
+                            Motor Etiket Akımı (A) - Opsiyonel
+                        </label>
+
+                        <input
+                            type="number"
+                            id="motorEtiket"
+                            placeholder="Varsa motor etiket değerini gir"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaMotorAkimi()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="motorAkımSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🚀 Motor Kalkış Akımı</h3>
+
+                    <div class="input-group">
+
+                        <label>Nominal Motor Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="motorKalkisAkım"
+                            placeholder="Örn: 28"
+                        >
+
+
+                        <label>Kalkış Akımı Katsayısı</label>
+
+                        <select id="kalkisKatsayi">
+
+                            <option value="4">
+                                4 × In
+                            </option>
+
+                            <option value="5">
+                                5 × In
+                            </option>
+
+                            <option value="6">
+                                6 × In
+                            </option>
+
+                            <option value="7">
+                                7 × In
+                            </option>
+
+                            <option value="8">
+                                8 × In
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaMotorKalkis()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="motorKalkisSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🛡️ Motor Koruma / Termik</h3>
+
+                    <div class="input-group">
+
+                        <label>Motor Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="termikAkım"
+                            placeholder="Örn: 28"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaTermik()">
+
+                            Seç
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="termikSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🔌 Kontaktör Ön Seçimi</h3>
+
+                    <div class="input-group">
+
+                        <label>Motor Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="kontaktörAkım"
+                            placeholder="Örn: 28"
+                        >
+
+
+                        <label>Motor Gücü (kW)</label>
+
+                        <input
+                            type="number"
+                            id="kontaktörKw"
+                            placeholder="Örn: 15"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaKontaktör()">
+
+                            Seç
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kontaktörSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🔌 Motor Kablo Ön Seçimi</h3>
+
+                    <div class="input-group">
+
+                        <label>Motor Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="motorKabloAkım"
+                            placeholder="Örn: 28"
+                        >
+
+
+                        <label>Kablo Uzunluğu (m)</label>
+
+                        <input
+                            type="number"
+                            id="motorKabloUzunluk"
+                            placeholder="Örn: 50"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaMotorKablo()">
+
+                            Kesit Seç
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="motorKabloSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>⭐ Yıldız - Üçgen</h3>
+
+                    <p>
+                        Motor etiket gerilimleri ve bağlantı
+                        şekli mutlaka kontrol edilmelidir.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="card motorUyari">
+
+                <h3>⚠️ Önemli Not</h3>
+
+                <p>
+
+                    Bu bölümde hesaplanan motor akımı, kablo kesiti,
+                    sigorta, TMŞ, motor koruma şalteri, kontaktör ve
+                    termik değerleri başlangıç/ön seçim değerleridir.
+
+                    Nihai seçimde motor üreticisinin etiket değerleri,
+                    çalışma koşulları, kalkış yöntemi, kablo döşeme
+                    şekli, ortam sıcaklığı, yük karakteristiği ve
+                    ilgili cihaz üreticisinin teknik değerleri
+                    mutlaka kontrol edilmelidir.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             KORUMA
+             ================================================= -->
+
+        <div id="koruma"
+             class="page"
+             style="display:none;">
+
+
+            <div class="card">
+
+                <h1>🛡️ Koruma Hesap Merkezi</h1>
+
+                <p>
+                    Sigorta, MCB, TMŞ, kaçak akım rölesi,
+                    kısa devre, kablo koruması ve parafudr
+                    ön seçim hesapları.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>🔌 MCB / L Otomat Ön Seçimi</h3>
+
+                    <div class="input-group">
+
+                        <label>Yük Akımı Ib (A)</label>
+
+                        <input
+                            type="number"
+                            id="mcbIb"
+                            placeholder="Örn: 25"
+                        >
+
+
+                        <label>Kablo Taşıma Kapasitesi Iz (A)</label>
+
+                        <input
+                            type="number"
+                            id="mcbIz"
+                            placeholder="Örn: 36"
+                        >
+
+
+                        <label>Karakteristik</label>
+
+                        <select id="mcbKarakteristik">
+
+                            <option value="B">B Tipi</option>
+
+                            <option value="C">
+                                C Tipi
+                            </option>
+
+                            <option value="D">
+                                D Tipi
+                            </option>
+
+                        </select>
+
+
+                        <label>Kutup</label>
+
+                        <select id="mcbKutup">
+
+                            <option value="1">1P</option>
+
+                            <option value="2">2P</option>
+
+                            <option value="3">3P</option>
+
+                            <option value="4">4P</option>
+
+                        </select>
+
+
+                        <label>Prospektif Kısa Devre Ik (kA)</label>
+
+                        <input
+                            type="number"
+                            id="mcbIk"
+                            placeholder="Örn: 4"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaMCB()">
+
+                            Ön Seçim
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="mcbSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🛡️ TMŞ / MCCB Ön Seçimi</h3>
+
+                    <div class="input-group">
+
+                        <label>Yük Akımı Ib (A)</label>
+
+                        <input
+                            type="number"
+                            id="tmsIb"
+                            placeholder="Örn: 160"
+                        >
+
+
+                        <label>Kablo Taşıma Kapasitesi Iz (A)</label>
+
+                        <input
+                            type="number"
+                            id="tmsIz"
+                            placeholder="Örn: 190"
+                        >
+
+
+                        <label>Kısa Devre Akımı Ik (kA)</label>
+
+                        <input
+                            type="number"
+                            id="tmsIk"
+                            placeholder="Örn: 20"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaTMS()">
+
+                            Ön Seçim
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="tmsSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🔥 Sigorta Ön Seçimi</h3>
+
+                    <div class="input-group">
+
+                        <label>Yük Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="sigortaIb"
+                            placeholder="Örn: 20"
+                        >
+
+
+                        <label>Kablo Taşıma Kapasitesi Iz (A)</label>
+
+                        <input
+                            type="number"
+                            id="sigortaIz"
+                            placeholder="Örn: 25"
+                        >
+
+
+                        <label>Sigorta Tipi</label>
+
+                        <select id="sigortaTip">
+
+                            <option value="gG">
+                                gG - Genel Amaçlı
+                            </option>
+
+                            <option value="aM">
+                                aM - Motor
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaSigorta()">
+
+                            Ön Seçim
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="sigortaSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>⚡ Kaçak Akım Rölesi</h3>
+
+                    <div class="input-group">
+
+                        <label>Yük Akımı (A)</label>
+
+                        <input
+                            type="number"
+                            id="kacakIb"
+                            placeholder="Örn: 32"
+                        >
+
+
+                        <label>Kaçak Akım Hassasiyeti</label>
+
+                        <select id="kacakHassasiyet">
+
+                            <option value="30">
+                                30 mA
+                            </option>
+
+                            <option value="100">
+                                100 mA
+                            </option>
+
+                            <option value="300">
+                                300 mA
+                            </option>
+
+                        </select>
+
+
+                        <label>RCD Tipi</label>
+
+                        <select id="rcdTip">
+
+                            <option value="A">
+                                Tip A
+                            </option>
+
+                            <option value="AC">
+                                Tip AC
+                            </option>
+
+                            <option value="B">
+                                Tip B
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="degerlendirKacakAkım()">
+
+                            Değerlendir
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kacakSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>🔌 Kablo - Sigorta Koordinasyonu</h3>
+
+                    <div class="input-group">
+
+                        <label>Yük Akımı Ib (A)</label>
+
+                        <input
+                            type="number"
+                            id="koordIb"
+                            placeholder="Örn: 25"
+                        >
+
+
+                        <label>Sigorta / MCB In (A)</label>
+
+                        <input
+                            type="number"
+                            id="koordIn"
+                            placeholder="Örn: 32"
+                        >
+
+
+                        <label>Kablo Taşıma Kapasitesi Iz (A)</label>
+
+                        <input
+                            type="number"
+                            id="koordIz"
+                            placeholder="Örn: 36"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="kontrolEtKoordinasyon()">
+
+                            Kontrol Et
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="koordSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>⚡ Kesme Kapasitesi Kontrolü</h3>
+
+                    <div class="input-group">
+
+                        <label>Prospektif Kısa Devre Akımı Ik (kA)</label>
+
+                        <input
+                            type="number"
+                            id="kesmeIk"
+                            placeholder="Örn: 8"
+                        >
+
+
+                        <label>Cihaz Kesme Kapasitesi Icn / Icu (kA)</label>
+
+                        <input
+                            type="number"
+                            id="kesmeIcu"
+                            placeholder="Örn: 10"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="kontrolEtKesme()">
+
+                            Kontrol Et
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="kesmeSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>💥 Trafo Kısa Devre Akımı</h3>
+
+                    <div class="input-group">
+
+                        <label>Trafo Gücü (kVA)</label>
+
+                        <input
+                            type="number"
+                            id="trafoKva"
+                            placeholder="Örn: 1000"
+                        >
+
+
+                        <label>Sekonder Gerilim (V)</label>
+
+                        <input
+                            type="number"
+                            id="trafoVolt"
+                            value="400"
+                        >
+
+
+                        <label>Trafo Empedansı Uk (%)</label>
+
+                        <input
+                            type="number"
+                            id="trafoUk"
+                            value="6"
+                        >
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="hesaplaTrafoKisaDevre()">
+
+                            Hesapla
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="trafoSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h3>⚡ SPD / Parafudr</h3>
+
+                    <div class="input-group">
+
+                        <label>Sistem</label>
+
+                        <select id="spdSistem">
+
+                            <option>
+                                TN-S
+                            </option>
+
+                            <option>
+                                TN-C
+                            </option>
+
+                            <option>
+                                TN-C-S
+                            </option>
+
+                            <option>
+                                TT
+                            </option>
+
+                        </select>
+
+
+                        <label>Gerilim</label>
+
+                        <select id="spdGerilim">
+
+                            <option>
+                                230 / 400 V
+                            </option>
+
+                        </select>
+
+
+                        <label>SPD Tipi</label>
+
+                        <select id="spdTip">
+
+                            <option>
+                                Tip 1
+                            </option>
+
+                            <option>
+                                Tip 2
+                            </option>
+
+                            <option>
+                                Tip 3
+                            </option>
+
+                            <option>
+                                Tip 1+2
+                            </option>
+
+                        </select>
+
+
+                        <label>Yıldırım / Darbe Riski</label>
+
+                        <select id="spdRisk">
+
+                            <option>
+                                Normal
+                            </option>
+
+                            <option>
+                                Yüksek
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            class="hesaplaBtn"
+                            onclick="degerlendirSPD()">
+
+                            Değerlendir
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="spdSonuc"
+                        class="sonuc">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="card motorUyari">
+
+                <h3>⚠️ Önemli Not</h3>
+
+                <p>
+
+                    Koruma cihazlarının nihai seçiminde
+                    şebeke kısa devre seviyesi, kablo döşeme şekli,
+                    ortam sıcaklığı, yük karakteristiği,
+                    cihaz üreticisinin açma karakteristikleri,
+                    koordinasyon ve ilgili standartlar mutlaka
+                    kontrol edilmelidir.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BİLGİ BANKASI
+             ================================================= -->
+
+        <div id="bilgi"
+             class="page"
+             style="display:none;">
+
+
+            <div class="card bilgiBaslik">
+
+                <h1>📚 Bilgi Bankası</h1>
+
+                <p>
+                    Elektrik, motor, koruma, kablo, ölçüm,
+                    UPS ve saha uygulamaları için hızlı teknik
+                    referans.
+                </p>
+
+            </div>
+
+
+
+            <div class="cards">
+
+
+                <!-- TEMEL ELEKTRİK -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⚡ Temel Elektrik</h3>
+
+                    <details open>
+
+                        <summary>Temel Formüller</summary>
+
+                        <p>
+                            <strong>Ohm Kanunu:</strong><br>
+                            V = I × R
+                        </p>
+
+                        <p>
+                            <strong>Akım:</strong><br>
+                            I = V / R
+                        </p>
+
+                        <p>
+                            <strong>Direnç:</strong><br>
+                            R = V / I
+                        </p>
+
+                        <p>
+                            <strong>Monofaze:</strong><br>
+                            P = V × I × cosφ
+                        </p>
+
+                        <p>
+                            <strong>Trifaze:</strong><br>
+                            P = √3 × V × I × cosφ
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- GERİLİM -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔌 Gerilim</h3>
+
+                    <details>
+
+                        <summary>230 V / 400 V</summary>
+
+                        <p>
+                            Faz - Nötr gerilimi yaklaşık 230 V'tur.
+                        </p>
+
+                        <p>
+                            Faz - Faz gerilimi yaklaşık 400 V'tur.
+                        </p>
+
+                        <p>
+                            √3 × 230 ≈ 400 V
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- KABLO -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔋 Kablo ve İletken</h3>
+
+                    <details>
+
+                        <summary>Kablo Seçiminde Dikkat</summary>
+
+                        <p>
+                            Kablo yalnızca akıma göre seçilmez.
+                        </p>
+
+                        <ul>
+
+                            <li>Yük akımı</li>
+
+                            <li>Kablo kesiti</li>
+
+                            <li>İletken malzemesi</li>
+
+                            <li>Döşeme şekli</li>
+
+                            <li>Ortam sıcaklığı</li>
+
+                            <li>Gruplama</li>
+
+                            <li>Hat uzunluğu</li>
+
+                            <li>Gerilim düşümü</li>
+
+                            <li>Kısa devre dayanımı</li>
+
+                        </ul>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- MOTOR -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⚙️ Motor</h3>
+
+                    <details>
+
+                        <summary>Motor Etiket Bilgileri</summary>
+
+                        <ul>
+
+                            <li>Motor gücü</li>
+
+                            <li>Gerilim</li>
+
+                            <li>Nominal akım</li>
+
+                            <li>Frekans</li>
+
+                            <li>Cosφ</li>
+
+                            <li>Devir</li>
+
+                            <li>Verim</li>
+
+                            <li>Bağlantı şekli</li>
+
+                        </ul>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>Motor Koruması</summary>
+
+                        <p>
+                            Motorun gerçek etiket akımı temel
+                            alınmalıdır.
+                        </p>
+
+                        <p>
+                            Termik, motor koruma şalteri,
+                            kontaktör, sigorta ve kablo seçimleri
+                            çalışma koşullarıyla birlikte
+                            değerlendirilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- YILDIZ ÜÇGEN -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⭐ Yıldız - Üçgen</h3>
+
+                    <details>
+
+                        <summary>Çalışma Prensibi</summary>
+
+                        <p>
+                            Motor ilk kalkışta yıldız bağlantıda,
+                            daha sonra üçgen bağlantıda çalıştırılır.
+                        </p>
+
+                        <p>
+                            Amaç kalkış akımını azaltmaktır.
+                        </p>
+
+                        <p>
+                            Motor etiketindeki gerilim değerleri
+                            mutlaka kontrol edilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- KORUMA -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🛡️ Koruma</h3>
+
+                    <details>
+
+                        <summary>Ib - In - Iz</summary>
+
+                        <p>
+                            <strong>Ib ≤ In ≤ Iz</strong>
+                        </p>
+
+                        <p>
+                            Ib = Tasarım yük akımı
+                        </p>
+
+                        <p>
+                            In = Koruma cihazı nominal akımı
+                        </p>
+
+                        <p>
+                            Iz = Kablo taşıma kapasitesi
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- MCB -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔌 MCB / L Otomat</h3>
+
+                    <details>
+
+                        <summary>B - C - D Karakteristiği</summary>
+
+                        <p>
+                            MCB karakteristiği yükün kalkış ve
+                            ani akım davranışına göre seçilir.
+                        </p>
+
+                        <p>
+                            Motor ve yüksek kalkış akımı oluşturan
+                            yüklerde karakteristik ayrıca kontrol
+                            edilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- TMŞ -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🛡️ TMŞ / MCCB</h3>
+
+                    <details>
+
+                        <summary>Temel Bilgi</summary>
+
+                        <p>
+                            TMŞ termik ve manyetik koruma
+                            fonksiyonlarına sahip bir şalterdir.
+                        </p>
+
+                        <p>
+                            Nominal akım, termik ayar, manyetik
+                            açma, Icu, Ics ve kutup sayısı
+                            değerlendirilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- KAÇAK AKIM -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⚡ Kaçak Akım Rölesi</h3>
+
+                    <details>
+
+                        <summary>RCD / RCCB</summary>
+
+                        <p>
+                            Kaçak akım rölesi artık akımı algılayarak
+                            koruma sağlar.
+                        </p>
+
+                        <p>
+                            Yaygın hassasiyetler:
+                            30 mA, 100 mA ve 300 mA.
+                        </p>
+
+                        <p>
+                            RCD tipi yükün karakterine göre
+                            değerlendirilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- KISA DEVRE -->
+
+                <div class="card bilgiCard">
+
+                    <h3>💥 Kısa Devre</h3>
+
+                    <details>
+
+                        <summary>Temel Bilgi</summary>
+
+                        <p>
+                            Kısa devre akımı sistem empedansına,
+                            trafo gücüne, trafo empedansına ve
+                            hat özelliklerine bağlıdır.
+                        </p>
+
+                        <p>
+                            Basitleştirilmiş trafo hesabı:
+                        </p>
+
+                        <p>
+                            <strong>
+                                Ik ≈ In / (Uk / 100)
+                            </strong>
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- KOMPANZASYON -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔋 Kompanzasyon</h3>
+
+                    <details>
+
+                        <summary>Cosφ</summary>
+
+                        <p>
+                            Kompanzasyonun amacı reaktif gücü
+                            azaltarak güç faktörünü iyileştirmektir.
+                        </p>
+
+                        <p>
+                            Mevcut ve hedef cosφ değerleri
+                            kondansatör ihtiyacının belirlenmesinde
+                            kullanılır.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- UPS -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔌 UPS</h3>
+
+                    <details>
+
+                        <summary>Temel Bilgi</summary>
+
+                        <p>
+                            UPS kritik yükleri enerji kesintilerine
+                            karşı beslemek için kullanılır.
+                        </p>
+
+                        <ul>
+
+                            <li>kVA</li>
+
+                            <li>kW</li>
+
+                            <li>Güç faktörü</li>
+
+                            <li>Yük tipi</li>
+
+                            <li>Akü kapasitesi</li>
+
+                            <li>Yedeklilik</li>
+
+                            <li>Bypass</li>
+
+                        </ul>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- AKÜ -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔋 Akü</h3>
+
+                    <details>
+
+                        <summary>Temel Bilgi</summary>
+
+                        <p>
+                            Akü kapasitesi genellikle Ah
+                            cinsinden ifade edilir.
+                        </p>
+
+                        <ul>
+
+                            <li>Yük gücü</li>
+
+                            <li>DC bara gerilimi</li>
+
+                            <li>Yedekleme süresi</li>
+
+                            <li>Akü kapasitesi</li>
+
+                            <li>Deşarj karakteristiği</li>
+
+                            <li>Sıcaklık</li>
+
+                        </ul>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- ÖLÇÜM -->
+
+                <div class="card bilgiCard">
+
+                    <h3>📐 Ölçüm</h3>
+
+                    <details>
+
+                        <summary>Multimetre</summary>
+
+                        <p>
+                            Gerilim ölçümünde uygun kademe
+                            kullanılmalıdır.
+                        </p>
+
+                        <p>
+                            Akım ölçümünde uygun ölçüm yöntemi
+                            kullanılmalıdır.
+                        </p>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>Pens Ampermetre</summary>
+
+                        <p>
+                            Devreyi kesmeden iletkenden geçen
+                            akımı ölçmek için kullanılır.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- TOPRAKLAMA -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🌍 Topraklama</h3>
+
+                    <details>
+
+                        <summary>Temel Bilgi</summary>
+
+                        <p>
+                            Topraklama, elektriksel tehlikelere
+                            karşı önemli bir güvenlik unsurudur.
+                        </p>
+
+                        <p>
+                            Topraklama direnci uygun test cihazı
+                            ve uygun ölçüm yöntemiyle ölçülmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- SPD -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⚡ Parafudr / SPD</h3>
+
+                    <details>
+
+                        <summary>SPD Tipleri</summary>
+
+                        <p>
+                            Tip 1, Tip 2, Tip 3 ve Tip 1+2
+                            uygulamaları bulunabilir.
+                        </p>
+
+                        <p>
+                            Sistem topraklama şekli ve üretici
+                            teknik değerleri kontrol edilmelidir.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- AC DC -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🔄 AC / DC</h3>
+
+                    <details>
+
+                        <summary>Temel Fark</summary>
+
+                        <p>
+                            <strong>AC:</strong>
+                            Alternatif akımdır.
+                        </p>
+
+                        <p>
+                            <strong>DC:</strong>
+                            Doğru akımdır.
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- BİRİMLER -->
+
+                <div class="card bilgiCard">
+
+                    <h3>📊 Elektrik Birimleri</h3>
+
+                    <details>
+
+                        <summary>Hızlı Referans</summary>
+
+                        <p>
+                            <strong>V</strong> → Volt → Gerilim
+                        </p>
+
+                        <p>
+                            <strong>A</strong> → Amper → Akım
+                        </p>
+
+                        <p>
+                            <strong>Ω</strong> → Ohm → Direnç
+                        </p>
+
+                        <p>
+                            <strong>W</strong> → Watt → Aktif güç
+                        </p>
+
+                        <p>
+                            <strong>VA</strong> → Görünür güç
+                        </p>
+
+                        <p>
+                            <strong>var</strong> → Reaktif güç
+                        </p>
+
+                        <p>
+                            <strong>Hz</strong> → Frekans
+                        </p>
+
+                        <p>
+                            <strong>kWh</strong> → Enerji
+                        </p>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- SAHA -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🏭 Saha Arıza Takibi</h3>
+
+                    <details>
+
+                        <summary>Kontrol Sırası</summary>
+
+                        <ol>
+
+                            <li>Enerji var mı?</li>
+
+                            <li>Sigorta / TMŞ durumu?</li>
+
+                            <li>Giriş ve çıkış gerilimi?</li>
+
+                            <li>Fazlar dengeli mi?</li>
+
+                            <li>Klemensler sağlam mı?</li>
+
+                            <li>Kumanda sinyali geliyor mu?</li>
+
+                            <li>Koruma cihazı açmış mı?</li>
+
+                            <li>Yük tarafında arıza var mı?</li>
+
+                        </ol>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- HASTANE -->
+
+                <div class="card bilgiCard">
+
+                    <h3>🏥 Kritik Tesis Sistemleri</h3>
+
+                    <details>
+
+                        <summary>Hızlı Liste</summary>
+
+                        <ul>
+
+                            <li>UPS</li>
+
+                            <li>Jeneratör</li>
+
+                            <li>OG hücreleri</li>
+
+                            <li>ATS / Transfer</li>
+
+                            <li>Yangın algılama</li>
+
+                            <li>Hemşire çağrı sistemi</li>
+
+                            <li>SCADA</li>
+
+                            <li>HVAC</li>
+
+                            <li>CCTV</li>
+
+                            <li>Acil aydınlatma</li>
+
+                        </ul>
+
+                    </details>
+
+                </div>
+
+
+
+                <!-- İŞ GÜVENLİĞİ -->
+
+                <div class="card bilgiCard">
+
+                    <h3>⚠️ Elektrik İş Güvenliği</h3>
+
+                    <details>
+
+                        <summary>Çalışma Öncesi</summary>
+
+                        <ol>
+
+                            <li>Devreyi tanımla.</li>
+
+                            <li>Enerjiyi kes.</li>
+
+                            <li>Yeniden enerjilendirmeyi önle.</li>
+
+                            <li>Gerilimsizliği doğrula.</li>
+
+                            <li>Uygun KKD kullan.</li>
+
+                            <li>Çalışma alanını güvenli hale getir.</li>
+
+                        </ol>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="card bilgiUyari">
+
+                <h3>⚠️ Bilgi Bankası Uyarısı</h3>
+
+                <p>
+
+                    Bu bölüm hızlı teknik referans amacıyla
+                    hazırlanmıştır. Gerçek tesis uygulamalarında
+                    ilgili standartlar, proje şartları, üretici
+                    dokümanları, cihaz karakteristikleri ve
+                    yetkili teknik personelin değerlendirmesi
+                    esas alınmalıdır.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AYARLAR
+             ================================================= -->
+
+        <div id="ayarlar"
+             class="page"
+             style="display:none;">
+
+
+            <div class="card">
+
+                <h1>⚙️ Ayarlar</h1>
+
+                <p>
+                    TeknikVolt ayarları ilerleyen aşamada
+                    burada bulunacaktır.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
